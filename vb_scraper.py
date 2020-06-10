@@ -14,7 +14,7 @@ KA_PREMIUM = "vb_data_ka_premium.txt"
 KA_LIFESTYLE = "vb_data_ka_lifestyle.txt"
 FRANKENTHAL = "vb_data_frankenthal.txt"
 
-PATH_OF_GIT_REPO = '/home/flg/vb_scraper/vb_scraper/.git'
+PATH_OF_GIT_REPO = '/home/flg/vb_scraper/vb_scraper'
 COMMIT_MESSAGE = 'Data push'
 
 # URLS 
@@ -35,7 +35,6 @@ def get_free_spots_from_url(url, filename):
     write_free_spots_to_file(output, filename)
 
 
-
 def write_free_spots_to_file(result, filename):
     with open(PATH + filename, "a") as myfile:
         myfile.write(result)
@@ -54,3 +53,4 @@ def git_push():
 get_free_spots_from_url(URL_KA_PREMIUM, KA_PREMIUM)
 get_free_spots_from_url(URL_KA_LIFESTYLE, KA_LIFESTYLE)
 get_free_spots_from_url(URL_FRANKENTHAL, FRANKENTHAL)
+git_push()
