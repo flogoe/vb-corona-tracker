@@ -5,12 +5,17 @@ import re
 import string
 import datetime
 from bs4 import BeautifulSoup
+from git import Repo
+
 
 # PATH and FILENAMES
-PATH = '/home/flg/vb_scraper/data/'
+PATH = '/home/flg/vb_scraper/vb_scraper/data/'
 KA_PREMIUM = "vb_data_ka_premium.txt"
 KA_LIFESTYLE = "vb_data_ka_lifestyle.txt"
 FRANKENTHAL = "vb_data_frankenthal.txt"
+
+PATH_OF_GIT_REPO = '/home/flg/vb_scraper/vb_scraper/.git'
+COMMIT_MESSAGE = 'Data push'
 
 # URLS 
 URL_KA_PREMIUM = 'https://www.venicebeach-fitness.de/clubs/premium-fitness/karlsruhe-postgalerie/'
@@ -34,6 +39,17 @@ def get_free_spots_from_url(url, filename):
 def write_free_spots_to_file(result, filename):
     with open(PATH + filename, "a") as myfile:
         myfile.write(result)
+
+
+def git_push():
+    try:
+        repo = Repo(PATH_OF_GIT_REPO)
+        repo.git.add(update=True)
+        repo.index.commit(COMMIT_MESSAGE)
+        origin = repo.remote(name='origin')
+        origin.push()
+    except:
+        print('Some error occured while pushing the code') 
 
 get_free_spots_from_url(URL_KA_PREMIUM, KA_PREMIUM)
 get_free_spots_from_url(URL_KA_LIFESTYLE, KA_LIFESTYLE)
