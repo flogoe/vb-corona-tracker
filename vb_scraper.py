@@ -37,7 +37,7 @@ def get_free_spots_from_url(url, filename, max_spots):
     visitors = max_spots - int(free_spots)
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     time = datetime.datetime.now().strftime("%H:%M")
-    if(time =='00:00')
+    if(time =='00:00'):
         output = "date;visitors;\n"
 
     date = datetime.datetime.now().strftime("%Y-%m-%d")
