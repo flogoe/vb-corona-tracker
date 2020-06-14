@@ -22,20 +22,27 @@ URL_KA_PREMIUM = 'https://www.venicebeach-fitness.de/clubs/premium-fitness/karls
 URL_KA_LIFESTYLE = 'https://www.venicebeach-fitness.de/clubs/lifestyle-fitness-plus/karlsruhe/'
 URL_FRANKENTHAL = 'https://www.venicebeach-fitness.de/clubs/lifestyle-fitness-plus/frankenthal.html'
 
-def get_free_spots_from_url(url, filename):
+# MAXIMAL SPOTS
+MAX_SPOTS_KA_PREMIUM = 110
+MAX_SPOTS_KA_LIFESTYLE = 109
+MAX_SPOTS_FRANKENTHAL = 101
+
+
+def get_free_spots_from_url(url, filename, max_spots):
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
     spots_html_element = soup.findAll('strong', text = re.compile('Plätze'))[0]
 
     free_spots = ''.join(filter(lambda x: x.isdigit(), str(spots_html_element)))
+    visitors = max_spots - free_spots
     timestamp = datetime.datetime.now()
 
-    output = str(timestamp) + " | " + free_spots + ";\n"
+    output = str(timestamp) + ";" + visitors + ";\n"
 
-    write_free_spots_to_file(output, filename)
+    write_visitors_to_file(output, filename)
 
 
-def write_free_spots_to_file(result, filename):
+def write_visitors_to_file(result, filename):
     with open(PATH + filename, "a") as myfile:
         myfile.write(result)
 
