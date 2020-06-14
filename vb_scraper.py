@@ -57,7 +57,7 @@ def git_push():
     except:
         print('Some error occured while pushing the code') 
 
-get_free_spots_from_url(URL_KA_PREMIUM, KA_PREMIUM)
-get_free_spots_from_url(URL_KA_LIFESTYLE, KA_LIFESTYLE)
-get_free_spots_from_url(URL_FRANKENTHAL, FRANKENTHAL)
+get_free_spots_from_url(URL_KA_PREMIUM, KA_PREMIUM, MAX_SPOTS_KA_PREMIUM)
+get_free_spots_from_url(URL_KA_LIFESTYLE, KA_LIFESTYLE, MAX_SPOTS_KA_LIFESTYLE)
+get_free_spots_from_url(URL_FRANKENTHAL, FRANKENTHAL, MAX_SPOTS_FRANKENTHAL)
 git_push()
