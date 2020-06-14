@@ -10,9 +10,9 @@ from git import Repo
 
 # PATH and FILENAMES
 PATH = '/home/flg/vb_scraper/vb_scraper/data/'
-KA_PREMIUM = "vb_data_ka_premium.txt"
-KA_LIFESTYLE = "vb_data_ka_lifestyle.txt"
-FRANKENTHAL = "vb_data_frankenthal.txt"
+KA_PREMIUM = "vb_data_ka_premium"
+KA_LIFESTYLE = "vb_data_ka_lifestyle"
+FRANKENTHAL = "vb_data_frankenthal"
 
 PATH_OF_GIT_REPO = '/home/flg/vb_scraper/vb_scraper'
 COMMIT_MESSAGE = 'Data push'
@@ -36,14 +36,19 @@ def get_free_spots_from_url(url, filename, max_spots):
     free_spots = ''.join(filter(lambda x: x.isdigit(), str(spots_html_element)))
     visitors = max_spots - int(free_spots)
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    time = datetime.datetime.now().strftime("%H:%M")
+    if(time =='00:00')
+        output = "date;visitors;\n"
+
+    date = datetime.datetime.now().strftime("%Y-%m-%d")
 
     output = str(timestamp) + ";" + str(visitors) + ";\n"
 
-    write_visitors_to_file(output, filename)
+    write_visitors_to_file(output, filename, date)
 
 
-def write_visitors_to_file(result, filename):
-    with open(PATH + filename, "a") as myfile:
+def write_visitors_to_file(result, filename, date):
+    with open(PATH + filename + '_' + date + '.csv', "a") as myfile:
         myfile.write(result)
 
 
