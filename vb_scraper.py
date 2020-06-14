@@ -35,7 +35,7 @@ def get_free_spots_from_url(url, filename, max_spots):
 
     free_spots = ''.join(filter(lambda x: x.isdigit(), str(spots_html_element)))
     visitors = max_spots - free_spots
-    timestamp = datetime.datetime.now()
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     output = str(timestamp) + ";" + visitors + ";\n"
 
