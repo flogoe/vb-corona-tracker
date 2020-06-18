@@ -22,27 +22,28 @@ URL_KA_PREMIUM = 'https://www.venicebeach-fitness.de/clubs/premium-fitness/karls
 URL_KA_LIFESTYLE = 'https://www.venicebeach-fitness.de/clubs/lifestyle-fitness-plus/karlsruhe/'
 URL_FRANKENTHAL = 'https://www.venicebeach-fitness.de/clubs/lifestyle-fitness-plus/frankenthal.html'
 
-# MAXIMAL SPOTS
-MAX_SPOTS_KA_PREMIUM = 110
-MAX_SPOTS_KA_LIFESTYLE = 109
-MAX_SPOTS_FRANKENTHAL = 101
+# MAXIMAL CAPACITY
+MAX_CAPACITY_KA_PREMIUM = 110
+MAX_CAPACITY_KA_LIFESTYLE = 109
+MAX_CAPACITY_FRANKENTHAL = 101
 
 
-def get_free_spots_from_url(url, filename, max_spots):
+def get_free_spots_from_url(url, filename, capacity):
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
     spots_html_element = soup.findAll('strong', text = re.compile('Plätze'))[0]
 
     free_spots = ''.join(filter(lambda x: x.isdigit(), str(spots_html_element)))
-    visitors = max_spots - int(free_spots)
+    visitors = capacity - int(free_spots)
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     time = datetime.datetime.now().strftime("%H:%M")
-    if(time =='00:00'):
-        output = "date;visitors;capacity\n"
-
     date = datetime.datetime.now().strftime("%Y-%m-%d")
 
-    output = str(timestamp) + ";" + str(visitors) + ";" + str(max_spots) +"\n"
+    if(time =='00:00'):
+        column_title = "date;visitors;capacity\n"
+        write_visitors_to_file(column_title, filename, date)
+    
+    output = str(timestamp) + ";" + str(visitors) + ";" + str(capacity) +"\n"
 
     write_visitors_to_file(output, filename, date)
 
@@ -62,7 +63,7 @@ def git_push():
     except:
         print('Some error occured while pushing the code') 
 
-get_free_spots_from_url(URL_KA_PREMIUM, KA_PREMIUM, MAX_SPOTS_KA_PREMIUM)
-get_free_spots_from_url(URL_KA_LIFESTYLE, KA_LIFESTYLE, MAX_SPOTS_KA_LIFESTYLE)
-get_free_spots_from_url(URL_FRANKENTHAL, FRANKENTHAL, MAX_SPOTS_FRANKENTHAL)
+get_free_spots_from_url(URL_KA_PREMIUM, KA_PREMIUM, MAX_CAPACITY_KA_PREMIUM)
+get_free_spots_from_url(URL_KA_LIFESTYLE, KA_LIFESTYLE, MAX_CAPACITY_KA_LIFESTYLE)
+get_free_spots_from_url(URL_FRANKENTHAL, FRANKENTHAL, MAX_CAPACITY_FRANKENTHAL)
 git_push()
