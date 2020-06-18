@@ -38,11 +38,11 @@ def get_free_spots_from_url(url, filename, max_spots):
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     time = datetime.datetime.now().strftime("%H:%M")
     if(time =='00:00'):
-        output = "date;visitors;\n"
+        output = "date;visitors;capacity\n"
 
     date = datetime.datetime.now().strftime("%Y-%m-%d")
 
-    output = str(timestamp) + ";" + str(visitors) + ";\n"
+    output = str(timestamp) + ";" + str(visitors) + ";" + str(max_spots) +"\n"
 
     write_visitors_to_file(output, filename, date)
 
