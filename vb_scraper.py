@@ -27,6 +27,11 @@ MAX_CAPACITY_KA_PREMIUM = 110
 MAX_CAPACITY_KA_LIFESTYLE = 109
 MAX_CAPACITY_FRANKENTHAL = 101
 
+# TIME / DATE
+TIMESTAMP = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+DATE = datetime.datetime.now().strftime("%Y-%m-%d")
+TIME = datetime.datetime.now().strftime("%H:%M")
+
 
 def get_free_spots_from_url(url, filename, capacity):
     page = requests.get(url)
@@ -35,21 +40,19 @@ def get_free_spots_from_url(url, filename, capacity):
 
     free_spots = ''.join(filter(lambda x: x.isdigit(), str(spots_html_element)))
     visitors = capacity - int(free_spots)
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-    time = datetime.datetime.now().strftime("%H:%M")
-    date = datetime.datetime.now().strftime("%Y-%m-%d")
-
-    if(time =='00:00'):
-        column_title = "date;visitors;capacity\n"
-        write_visitors_to_file(column_title, filename, date)
     
-    output = str(timestamp) + ";" + str(visitors) + ";" + str(capacity) +"\n"
 
-    write_visitors_to_file(output, filename, date)
+    if(TIME =='00:00'):
+        column_title = "date;visitors;capacity\n"
+        write_visitors_to_file(column_title, filename)
+    
+    output = str(TIMESTAMP) + ";" + str(visitors) + ";" + str(capacity) +"\n"
+
+    write_visitors_to_file(output, filename)
 
 
-def write_visitors_to_file(result, filename, date):
-    with open(PATH + filename + '_' + date + '.csv', "a") as myfile:
+def write_visitors_to_file(result, filename):
+    with open(PATH + filename + '_' + DATE + '.csv', "a") as myfile:
         myfile.write(result)
 
 
@@ -68,6 +71,5 @@ get_free_spots_from_url(URL_KA_LIFESTYLE, KA_LIFESTYLE, MAX_CAPACITY_KA_LIFESTYL
 get_free_spots_from_url(URL_FRANKENTHAL, FRANKENTHAL, MAX_CAPACITY_FRANKENTHAL)
 
 
-time = datetime.datetime.now().strftime("%H:%M")
-if time == '00:00' or time == '12:00':
+if TIME == '00:00' or TIME == '12:00':
     git_push()
