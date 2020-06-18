@@ -67,5 +67,7 @@ get_free_spots_from_url(URL_KA_PREMIUM, KA_PREMIUM, MAX_CAPACITY_KA_PREMIUM)
 get_free_spots_from_url(URL_KA_LIFESTYLE, KA_LIFESTYLE, MAX_CAPACITY_KA_LIFESTYLE)
 get_free_spots_from_url(URL_FRANKENTHAL, FRANKENTHAL, MAX_CAPACITY_FRANKENTHAL)
 
+
+time = datetime.datetime.now().strftime("%H:%M")
 if time == '00:00' or time == '12:00':
     git_push()
