@@ -23,8 +23,8 @@ URL_KA_LIFESTYLE = 'https://www.venicebeach-fitness.de/clubs/lifestyle-fitness-p
 URL_FRANKENTHAL = 'https://www.venicebeach-fitness.de/clubs/lifestyle-fitness-plus/frankenthal.html'
 
 # MAXIMAL CAPACITY
-MAX_CAPACITY_KA_PREMIUM = 110
-MAX_CAPACITY_KA_LIFESTYLE = 109
+MAX_CAPACITY_KA_PREMIUM = 150
+MAX_CAPACITY_KA_LIFESTYLE = 149
 MAX_CAPACITY_FRANKENTHAL = 101
 
 # TIME / DATE
