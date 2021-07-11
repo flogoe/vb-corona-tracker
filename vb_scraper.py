@@ -9,16 +9,14 @@ from git import Repo
 
 
 # PATH and FILENAMES
-PATH = '/home/alfiron/Workspace/vb_scraper/data/'
-# PATH = '/home/flg/vb_scraper/vb_scraper/data/'
-
+PATH = '/home/flo/Workspace/vb-corona-tracker/data/'
 KA_PREMIUM = "vb_data_ka_premium"
 KA_LIFESTYLE = "vb_data_ka_lifestyle"
 FRANKENTHAL = "vb_data_frankenthal"
 KETSCH = "vb_data_ketsch"
 
 
-PATH_OF_GIT_REPO = '/home/flg/vb_scraper/vb_scraper'
+PATH_OF_GIT_REPO = '/home/flo/Workspace/vb-corona-tracker'
 COMMIT_MESSAGE = 'Update data files'
 
 # URLS 
