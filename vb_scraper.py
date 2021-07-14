@@ -27,7 +27,7 @@ URL_KETSCH = 'https://www.venicebeach-fitness.de/clubs/premium-fitness/ketsch.ht
 
 # MAXIMAL CAPACITY
 MAX_CAPACITY_KA_PREMIUM = 150
-MAX_CAPACITY_KA_LIFESTYLE = 0
+MAX_CAPACITY_KA_LIFESTYLE = 142
 MAX_CAPACITY_FRANKENTHAL = 95
 MAX_CAPACITY_KETSCH = 70
 
@@ -78,5 +78,6 @@ get_free_spots_from_url(URL_KETSCH, KETSCH, MAX_CAPACITY_KETSCH)
 
 
 
-if TIME == '00:00' or TIME == '12:00':
+# if TIME == '00:00' or TIME == '12:00':
+if TIME == '00:00':
     git_push()
