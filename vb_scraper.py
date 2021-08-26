@@ -80,4 +80,4 @@ get_free_spots_from_url(URL_KETSCH, KETSCH, MAX_CAPACITY_KETSCH)
 
 # if TIME == '00:00' or TIME == '12:00':
 if TIME == '00:00':
-    git_push()
+    #git_push()
